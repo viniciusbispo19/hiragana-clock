@@ -1,0 +1,8 @@
+# Gerado por glib-compile-schemas (cada máquina compila o seu)
+gschemas.compiled
+
+# Gerado por gnome-extensions pack
+*.shell-extension.zip
+
+# Configurações pessoais do editor
+.vscode/

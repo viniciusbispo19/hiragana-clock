@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Schema GSettings da extensão Hiragana Clock.
+
+  POR QUE GSETTINGS?
+  - extension.js (dentro do processo gnome-shell) e prefs.js (num processo
+    separado) precisam compartilhar as mesmas opções. GSettings guarda tudo
+    no dconf e avisa os dois processos com o sinal "changed" sempre que um
+    valor muda: é isso que faz a mudança "valer na hora".
+  - O id precisa ser igual a "settings-schema" no metadata.json, e o nome do
+    arquivo precisa ser "<id>.gschema.xml", senão o glib-compile-schemas
+    ignora o arquivo.
+  - O path precisa começar e terminar com "/".
+-->
+<schemalist>
+  <schema id="org.gnome.shell.extensions.hiragana-clock"
+          path="/org/gnome/shell/extensions/hiragana-clock/">
+
+    <!-- ===== Conteúdo ===== -->
+    <!-- O dia da semana em hiragana é sempre mostrado: é o "rosto" do widget. -->
+
+    <key name="show-year" type="b">
+      <default>true</default>
+      <summary>Mostrar o ano abaixo do dia e mês</summary>
+    </key>
+
+    <key name="show-kanji" type="b">
+      <default>false</default>
+      <summary>Mostrar a data em kanji (ex.: 十一月十日 火曜日)</summary>
+    </key>
+
+    <key name="show-time" type="b">
+      <default>false</default>
+      <summary>Mostrar a hora em hiragana abaixo do widget</summary>
+    </key>
+
+    <key name="use-12h" type="b">
+      <default>false</default>
+      <summary>Usar formato 12h (ごぜん/ごご)</summary>
+    </key>
+
+    <key name="show-choudo" type="b">
+      <default>false</default>
+      <summary>Mostrar ちょうど na hora cheia</summary>
+    </key>
+
+    <!-- ===== Posição na área de trabalho ===== -->
+
+    <!-- Âncora: em qual dos 9 pontos da tela o widget "gruda", ou "custom"
+         (posição livre, definida arrastando com o mouse).
+         type="s" com <choices>: o dconf recusa valores fora da lista. -->
+    <key name="anchor" type="s">
+      <choices>
+        <choice value="top-left"/>
+        <choice value="top-center"/>
+        <choice value="top-right"/>
+        <choice value="center-left"/>
+        <choice value="center"/>
+        <choice value="center-right"/>
+        <choice value="bottom-left"/>
+        <choice value="bottom-center"/>
+        <choice value="bottom-right"/>
+        <choice value="custom"/>
+      </choices>
+      <default>'center-left'</default>
+      <summary>Posição do widget na área de trabalho</summary>
+    </key>
+
+    <!-- Posição livre (anchor = custom): canto superior esquerdo do widget,
+         em pixels, contado a partir do canto da área útil (abaixo do painel).
+         Chaves separadas de margin-x/y para que voltar a uma âncora fixa
+         recupere as distâncias que você tinha antes de arrastar. -->
+    <key name="custom-x" type="i">
+      <range min="0" max="20000"/>
+      <default>64</default>
+      <summary>Posição livre: X (px)</summary>
+    </key>
+    <key name="custom-y" type="i">
+      <range min="0" max="20000"/>
+      <default>64</default>
+      <summary>Posição livre: Y (px)</summary>
+    </key>
+
+    <key name="draggable" type="b">
+      <default>true</default>
+      <summary>Permitir arrastar o widget com o mouse</summary>
+    </key>
+
+    <key name="margin-x" type="i">
+      <range min="0" max="2000"/>
+      <default>64</default>
+      <summary>Distância horizontal da borda (px)</summary>
+    </key>
+    <key name="margin-y" type="i">
+      <range min="0" max="2000"/>
+      <default>64</default>
+      <summary>Distância vertical da borda (px)</summary>
+    </key>
+
+    <!-- ===== Aparência ===== -->
+
+    <key name="font-size" type="i">
+      <range min="24" max="240"/>
+      <default>96</default>
+      <summary>Tamanho do dia da semana (pt)</summary>
+      <description>Data, ano e hora são proporcionais a este tamanho.</description>
+    </key>
+
+    <!-- Nomes de família de fonte (como aparecem em `fc-list : family`). -->
+    <key name="hiragana-font" type="s">
+      <default>'Yuji Syuku'</default>
+      <summary>Fonte do texto em hiragana</summary>
+    </key>
+    <key name="date-font" type="s">
+      <default>'League Gothic'</default>
+      <summary>Fonte da data e do ano</summary>
+    </key>
+
+    <!-- Esquema de cores: prateado (degradê no hiragana, data branca, como
+         na foto de referência), tudo branco ou tudo preto (para papéis de
+         parede claros). -->
+    <key name="color-style" type="s">
+      <choices>
+        <choice value="silver"/>
+        <choice value="white"/>
+        <choice value="black"/>
+      </choices>
+      <default>'silver'</default>
+      <summary>Cor do widget</summary>
+    </key>
+
+    <key name="hide-default-clock" type="b">
+      <default>false</default>
+      <summary>Esconder o relógio padrão do painel do GNOME</summary>
+    </key>
+
+  </schema>
+</schemalist>

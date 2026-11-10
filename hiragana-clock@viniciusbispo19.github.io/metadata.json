@@ -1,0 +1,12 @@
+{
+  "uuid": "hiragana-clock@viniciusbispo19.github.io",
+  "name": "Hiragana Clock",
+  "description": "Widget na área de trabalho que mostra a data e a hora em hiragana, com kanji e português.",
+  "shell-version": [
+    "50",
+    "51"
+  ],
+  "settings-schema": "org.gnome.shell.extensions.hiragana-clock",
+  "url": "https://github.com/viniciusbispo19/hiragana-clock",
+  "version-name": "0.1.0"
+}

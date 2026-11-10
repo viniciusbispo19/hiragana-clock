@@ -1,0 +1,89 @@
+/*
+ * stylesheet.css — o GNOME Shell carrega este arquivo automaticamente quando
+ * a extensão é ativada (e descarrega ao desativar). Não é CSS de navegador:
+ * é o dialeto do St, que aceita só um subconjunto de propriedades.
+ *
+ * O QUE NÃO ESTÁ AQUI (e por quê):
+ *  - font-size da raiz e font-family dos textos vêm das PREFERÊNCIAS e são
+ *    aplicados em extension.js com set_style() (estilo inline, que tem
+ *    prioridade sobre esta folha).
+ *  - o degradê prateado do hiragana não existe em CSS do St: é um shader
+ *    (ver SilverGradientEffect em extension.js). A cor abaixo é o que
+ *    aparece se o degradê estiver desligado.
+ *
+ * Tamanhos em `em` = fração do tamanho da fonte do PAI. Como a raiz recebe
+ * o tamanho escolhido, todas as partes crescem juntas na mesma proporção.
+ *
+ * Prefixo "hiragana-clock-" nas classes: nunca colidir com classes do tema
+ * (WhiteSur, Adwaita…) nem de outras extensões.
+ */
+
+/* Raiz do widget: sem cartão de fundo, o texto flutua sobre o papel de parede.
+ * As CORES não ficam aqui: ficam nos três esquemas no fim do arquivo. */
+.hiragana-clock-widget {
+    /* fonte reserva caso a escolhida nas preferências não exista
+     * (um só nome entre aspas: o St rejeita listas com dois!) */
+    font-family: "Noto Sans CJK JP", sans-serif;
+}
+
+/* O dia da semana, grande. O padding à direita e embaixo cria o espaço onde
+ * o bloco de data "transborda", sobrepondo o final do texto como na
+ * referência. Mexa nesses dois valores para aproximar/afastar a data. */
+.hiragana-clock-weekday {
+    letter-spacing: 0.12em;
+    padding-right: 0.1em;
+    padding-bottom: 0.38em;
+}
+
+/* Bloco "7 abril / 2025" no canto inferior direito da composição. */
+.hiragana-clock-datebox {
+    spacing: 0;
+}
+
+/* Fonte estreita e alta (League Gothic por padrão). */
+.hiragana-clock-daymonth,
+.hiragana-clock-year {
+    font-size: 0.42em;
+}
+
+/* Data em kanji (opcional), logo abaixo da composição. */
+.hiragana-clock-kanji {
+    font-size: 0.36em;
+    letter-spacing: 0.1em;
+}
+
+/* Hora opcional, abaixo de tudo, menor. */
+.hiragana-clock-time {
+    font-size: 0.32em;
+    letter-spacing: 0.08em;
+    padding-top: 0.2em;
+}
+
+/* ===== Esquemas de cor =====
+ * extension.js põe UMA destas classes na raiz do widget. O seletor com
+ * espaço (".pai .filho") é um "seletor de descendente": vale para o filho
+ * em qualquer nível dentro do pai. O St entende esse tipo de seletor. */
+
+/* Prateado (padrão, como na foto). A cor do texto japonês é a reserva para
+ * quando o degradê (shader) não estiver disponível; com ele ligado, o shader
+ * repinta essas letras. A data fica branca e nítida. */
+.hiragana-clock-silver .hiragana-clock-weekday,
+.hiragana-clock-silver .hiragana-clock-kanji,
+.hiragana-clock-silver .hiragana-clock-time {
+    color: #d9d9d9;
+}
+.hiragana-clock-silver .hiragana-clock-daymonth,
+.hiragana-clock-silver .hiragana-clock-year {
+    color: #ffffff;
+}
+
+/* Branco: tudo branco, sem degradê. */
+.hiragana-clock-white {
+    color: #ffffff;
+}
+
+/* Preto: para papéis de parede claros. Um preto "quase preto" fica menos
+ * duro que #000 puro. */
+.hiragana-clock-black {
+    color: #141414;
+}
