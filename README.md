@@ -2,7 +2,7 @@
 
 Extensão do GNOME Shell que coloca na área de trabalho um widget com o dia da semana escrito em **hiragana**, acompanhado da data e, se você quiser, da data em kanji e da hora em hiragana.
 
-![Widget prateado sobre fundo escuro](docs/screenshot.png)
+![Widget prateado: かようび com 10 novembro 2026, sobre fundo preto](docs/screenshot.png)
 
 ![Widget preto sobre fundo claro](docs/screenshot-preto.png)
 
